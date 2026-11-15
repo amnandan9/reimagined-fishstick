@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Official Fee Receipt - Flos Carmeli Convent School, Mysuru | Keerthana A M</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ANTI-SCREENSHOT & USER SELECT SECURITY PROTECTION */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-user-select: none !important;
+      -moz-user-select: none !important;
+      -ms-user-select: none !important;
+      user-select: none !important;
+      -webkit-touch-callout: none !important;
+    }
+
+    img {
+      -webkit-user-drag: none;
+      user-drag: none;
+      pointer-events: none;
+    }
+
+    body {
+      background: #f1f5f9;
+      font-family: 'Inter', -apple-system, sans-serif;
+      padding: 30px 15px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      color: #0f172a;
+      min-height: 100vh;
+    }
+
+    /* SCREEN CAPTURE / SNIPPING TOOL BLUR OVERLAY */
+    body.capture-protected .page-wrapper-blur {
+      filter: blur(35px) grayscale(1) !important;
+      opacity: 0.08 !important;
+      pointer-events: none !important;
+    }
+
+    #securityCoverOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.98);
+      z-index: 999999;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      padding: 24px;
+    }
+
+    #securityCoverOverlay.active {
+      display: flex;
+    }
+
+    .action-bar {
+      width: 100%;
+      max-width: 740px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .back-btn {
+      text-decoration: none;
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      padding: 9px 18px;
+      border-radius: 8px;
+      color: #334155;
+      font-weight: 600;
+      font-size: 14px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s;
+    }
+
+    .back-btn:hover {
+      background: #f8fafc;
+      border-color: #94a3b8;
+    }
+
+    .tab-group {
+      display: flex;
+      gap: 6px;
+    }
+
+    .tab-btn {
+      background: #e2e8f0;
+      border: 1px solid #cbd5e1;
+      padding: 8px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      color: #334155;
+    }
+
+    .tab-btn.active {
+      background: #0284c7;
+      color: white;
+      border-color: #0284c7;
+    }
+
+    .receipt-container {
+      width: 100%;
+      max-width: 740px;
+      background: #ffffff;
+      border: 2px solid #0f172a;
+      padding: 34px 38px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+      position: relative;
+    }
+
+    .school-header {
+      text-align: center;
+      border-bottom: 2px double #334155;
+      padding-bottom: 16px;
+      margin-bottom: 20px;
+    }
+
+    .school-title {
+      font-family: 'Cinzel', serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #1e3a8a;
+      letter-spacing: 0.5px;
+    }
+
+    .school-affil {
+      font-size: 12.5px;
+      color: #475569;
+      margin-top: 3px;
+      font-weight: 500;
+    }
+
+    .school-contact {
+      font-size: 12px;
+      color: #64748b;
+      margin-top: 2px;
+    }
+
+    .receipt-badge {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 4px 16px;
+      background: #0f172a;
+      color: #ffffff;
+      font-size: 13.5px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-radius: 4px;
+    }
+
+    .meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px 20px;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 8px;
+      padding: 14px 18px;
+      margin-bottom: 22px;
+      font-size: 13.5px;
+    }
+
+    .meta-row {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .meta-label {
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    .meta-value {
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .fee-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      margin-bottom: 20px;
+    }
+
+    .fee-table th, .fee-table td {
+      border: 1px solid #cbd5e1;
+      padding: 9px 12px;
+    }
+
+    .fee-table th {
+      background: #f1f5f9;
+      font-weight: 700;
+      color: #1e293b;
+      text-align: left;
+    }
+
+    .fee-table td.text-right {
+      text-align: right;
+    }
+
+    .fee-table tr.total-row {
+      font-weight: 700;
+      background: #f8fafc;
+      font-size: 14.5px;
+    }
+
+    .amount-words-box {
+      font-size: 13px;
+      background: #f0fdf4;
+      border-left: 4px solid #16a34a;
+      padding: 10px 14px;
+      margin-bottom: 18px;
+      line-height: 1.5;
+    }
+
+    .balance-notice-box {
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: 6px;
+      padding: 12px 16px;
+      font-size: 13px;
+      color: #991b1b;
+      margin-bottom: 28px;
+      line-height: 1.6;
+    }
+
+    .signatures-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-top: 40px;
+      padding: 0 10px;
+    }
+
+    .sig-col {
+      text-align: center;
+      width: 160px;
+    }
+
+    .seal-circle {
+      width: 76px;
+      height: 76px;
+      border: 2px dashed #0284c7;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 8px;
+      font-size: 10px;
+      font-weight: 800;
+      color: #0284c7;
+      text-align: center;
+      line-height: 1.15;
+      text-transform: uppercase;
+      transform: rotate(-8deg);
+    }
+
+    .sig-dash {
+      border-top: 1.5px solid #334155;
+      padding-top: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #1e293b;
+    }
+  </style>
+</head>
+<body oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false;">
+
+  <!-- ANTI-SCREENSHOT PRIVACY SHIELD OVERLAY -->
+  <div id="securityCoverOverlay">
+    <div style="font-size: 50px; color: #ef4444; margin-bottom: 14px;">🛡️</div>
+    <h2 style="font-size: 22px; font-weight: 800; margin-bottom: 8px;">Official Document Protection</h2>
+    <p style="font-size: 14px; color: #94a3b8; max-width: 440px; line-height: 1.6;">
+      Screen capture and unauthorized reproduction are disabled on this official school receipt.
+    </p>
+  </div>
+
+  <div class="page-wrapper-blur" style="width: 100%; display: flex; flex-direction: column; align-items: center;">
+
+    <div class="action-bar">
+      <a href="index.html" class="back-btn">&larr; Back to Student Portal</a>
+      
+      <div class="tab-group">
+        <button class="tab-btn active" id="tabOct" onclick="setReceipt('oct')">09-Oct (₹ 15,000)</button>
+        <button class="tab-btn" id="tabAug" onclick="setReceipt('aug')">28-Aug (₹ 7,300)</button>
+        <button class="tab-btn" id="tabConsol" onclick="setReceipt('consol')">Consolidated (₹ 22,300)</button>
+      </div>
+    </div>
+
+    <div class="receipt-container" id="receiptPrintArea">
+      <div class="school-header">
+        <div class="school-title">FLOS CARMELI CONVENT SCHOOL</div>
+        <div class="school-affil">(Affiliated to Council for the Indian School Certificate Examinations - ICSE)</div>
+        <div class="school-contact">No. 480, Old Kesare Village, Hale Kesare, Mysuru, Karnataka &ndash; 570003</div>
+        <div class="school-contact">Phone: +91 81979713xx / 0821-24953xx | Email: floscarmeli2004@gmail.com</div>
+        <div class="receipt-badge" id="recBadge">STUDENT FEE RECEIPT &bull; 2026 - 2027</div>
+      </div>
+
+      <div class="meta-grid">
+        <div class="meta-row">
+          <span class="meta-label">Receipt / Invoice No:</span>
+          <span class="meta-value" id="rInvoice">FCC/2026-27/184</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Date of Payment:</span>
+          <span class="meta-value" id="rDate">09-Oct-2026</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Student Name:</span>
+          <span class="meta-value">KEERTHANA A M</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Class & Section:</span>
+          <span class="meta-value">VIII - B</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Admission No:</span>
+          <span class="meta-value">FCC/2020/1482</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Roll No:</span>
+          <span class="meta-value">24</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Payment Mode:</span>
+          <span class="meta-value" style="color: #0284c7;">Online (UPI / Net Banking)</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Bank Reference No:</span>
+          <span class="meta-value" id="rBankRef">SBIN9481029481</span>
+        </div>
+      </div>
+
+      <table class="fee-table">
+        <thead>
+          <tr>
+            <th style="width: 50px;">Sl No.</th>
+            <th>Fee Particulars / Category</th>
+            <th class="text-right" style="width: 140px;">Amount Paid (₹)</th>
+          </tr>
+        </thead>
+        <tbody id="rTableBody">
+          <tr>
+            <td>1</td>
+            <td>Tuition Fee (Installment II)</td>
+            <td class="text-right">10,000.00</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Smart Class & Digital IT Lab</td>
+            <td class="text-right">2,500.00</td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Term Examination Fee</td>
+            <td class="text-right">1,500.00</td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Sports & Cultural Activities</td>
+            <td class="text-right">1,000.00</td>
+          </tr>
+          <tr class="total-row">
+            <td colspan="2" class="text-right">Total Amount Received:</td>
+            <td class="text-right" style="color: #15803d; font-size: 16px;">₹ <span id="rTotalPaid">15,000.00</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="amount-words-box" id="rWordsBox">
+        <strong>Amount in Words:</strong> Rupees Fifteen Thousand Only.
+      </div>
+
+      <div class="balance-notice-box">
+        <div>&bull; <strong>Total Academic Fee (2026 - 2027):</strong> ₹ 43,700.00</div>
+        <div>&bull; <strong>Total Amount Paid to Date:</strong> ₹ 22,300.00 (₹ 7,300 on 28-Aug-2026 + ₹ 15,000 on 09-Oct-2026)</div>
+        <div>&bull; <strong>Balance Amount to be Paid:</strong> ₹ 21,400.00 (to be paid within <strong>17th of November 2026</strong>)</div>
+      </div>
+
+      <div class="signatures-row">
+        <div class="sig-col">
+          <div class="seal-circle">
+            FLOS CARMELI<br>CONVENT<br>MYSORE
+          </div>
+          <div style="font-size: 11px; color: #64748b;">School Seal</div>
+        </div>
+
+        <div class="sig-col">
+          <div style="height: 50px;"></div>
+          <div class="sig-dash">Accountant / Cashier</div>
+        </div>
+
+        <div class="sig-col">
+          <div style="height: 50px;"></div>
+          <div class="sig-dash">Principal / Headmistress</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Screenshot protection
+    function triggerScreenProtection() {
+      document.body.classList.add('capture-protected');
+      document.getElementById('securityCoverOverlay').classList.add('active');
+    }
+
+    function removeScreenProtection() {
+      document.body.classList.remove('capture-protected');
+      document.getElementById('securityCoverOverlay').classList.remove('active');
+    }
+
+    window.addEventListener('blur', triggerScreenProtection);
+    window.addEventListener('focus', removeScreenProtection);
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) triggerScreenProtection();
+      else removeScreenProtection();
+    });
+
+    window.addEventListener('keyup', (e) => {
+      if (e.key === 'PrintScreen' || e.keyCode === 44) {
+        triggerScreenProtection();
+        setTimeout(removeScreenProtection, 2500);
+      }
+    });
+
+    window.addEventListener('keydown', (e) => {
+      if (e.key === 'PrintScreen' || e.keyCode === 44 || ((e.ctrlKey || e.metaKey) && (e.key === 'p' || e.key === 's' || e.key === 'u'))) {
+        e.preventDefault();
+        triggerScreenProtection();
+        setTimeout(removeScreenProtection, 2000);
+        return false;
+      }
+    });
+
+    function setReceipt(type) {
+      document.getElementById('tabOct').classList.toggle('active', type === 'oct');
+      document.getElementById('tabAug').classList.toggle('active', type === 'aug');
+      document.getElementById('tabConsol').classList.toggle('active', type === 'consol');
+
+      const tbody = document.getElementById('rTableBody');
+
+      if (type === 'oct') {
+        document.getElementById('rInvoice').innerText = 'FCC/2026-27/184';
+        document.getElementById('rDate').innerText = '09-Oct-2026';
+        document.getElementById('rBankRef').innerText = 'SBIN9481029481';
+        document.getElementById('rTotalPaid').innerText = '15,000.00';
+        document.getElementById('rWordsBox').innerHTML = '<strong>Amount in Words:</strong> Rupees Fifteen Thousand Only.';
+        tbody.innerHTML = `
+          <tr><td>1</td><td>Tuition Fee (Installment II)</td><td class="text-right">10,000.00</td></tr>
+          <tr><td>2</td><td>Smart Class & Digital IT Lab</td><td class="text-right">2,500.00</td></tr>
+          <tr><td>3</td><td>Term Examination Fee</td><td class="text-right">1,500.00</td></tr>
+          <tr><td>4</td><td>Sports & Cultural Activities</td><td class="text-right">1,000.00</td></tr>
+          <tr class="total-row"><td colspan="2" class="text-right">Total Amount Received:</td><td class="text-right" style="color: #15803d; font-size: 16px;">₹ 15,000.00</td></tr>
+        `;
+      } else if (type === 'aug') {
+        document.getElementById('rInvoice').innerText = 'FCC/2026-27/112';
+        document.getElementById('rDate').innerText = '28-Aug-2026';
+        document.getElementById('rBankRef').innerText = 'SBIN8271039482';
+        document.getElementById('rTotalPaid').innerText = '7,300.00';
+        document.getElementById('rWordsBox').innerHTML = '<strong>Amount in Words:</strong> Rupees Seven Thousand Three Hundred Only.';
+        tbody.innerHTML = `
+          <tr><td>1</td><td>Tuition Fee (Part Payment)</td><td class="text-right">4,000.00</td></tr>
+          <tr><td>2</td><td>Term Examination Fee</td><td class="text-right">1,300.00</td></tr>
+          <tr><td>3</td><td>Digital Computer Lab Fee</td><td class="text-right">1,000.00</td></tr>
+          <tr><td>4</td><td>School Maintenance Fund</td><td class="text-right">1,000.00</td></tr>
+          <tr class="total-row"><td colspan="2" class="text-right">Total Amount Received:</td><td class="text-right" style="color: #15803d; font-size: 16px;">₹ 7,300.00</td></tr>
+        `;
+      } else {
+        document.getElementById('rInvoice').innerText = 'FCC/2026-27/CONSOL';
+        document.getElementById('rDate').innerText = '09-Oct-2026';
+        document.getElementById('rBankRef').innerText = 'CONSOLIDATED-ONLINE';
+        document.getElementById('rTotalPaid').innerText = '22,300.00';
+        document.getElementById('rWordsBox').innerHTML = '<strong>Amount in Words:</strong> Rupees Twenty-Two Thousand Three Hundred Only.';
+        tbody.innerHTML = `
+          <tr><td>1</td><td>Installment 1 (Paid on 28-Aug-2026 &bull; Inv #112)</td><td class="text-right">7,300.00</td></tr>
+          <tr><td>2</td><td>Installment 2 (Paid on 09-Oct-2026 &bull; Inv #184)</td><td class="text-right">15,000.00</td></tr>
+          <tr class="total-row"><td colspan="2" class="text-right">Total Amount Received:</td><td class="text-right" style="color: #15803d; font-size: 16px;">₹ 22,300.00</td></tr>
+        `;
+      }
+    }
+  </script>
+
+</body>
+</html>

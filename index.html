@@ -1,0 +1,1810 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Fee Portal - Flos Carmeli Convent School, Mysuru | Keerthana A M</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ANTI-SCREENSHOT & USER SELECT SECURITY PROTECTION */
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-user-select: none !important;
+      -moz-user-select: none !important;
+      -ms-user-select: none !important;
+      user-select: none !important;
+      -webkit-touch-callout: none !important;
+    }
+
+    img {
+      -webkit-user-drag: none;
+      user-drag: none;
+      pointer-events: none;
+    }
+
+    /* PRINT BLOCKING RULE */
+    @media print {
+      html, body {
+        display: none !important;
+        visibility: hidden !important;
+        height: 0 !important;
+        overflow: hidden !important;
+      }
+    }
+
+    /* SCREEN CAPTURE / SNIPPING TOOL BLUR OVERLAY */
+    body.capture-protected .page-wrapper-blur {
+      filter: blur(35px) grayscale(1) !important;
+      opacity: 0.08 !important;
+      pointer-events: none !important;
+      transition: filter 0.1s ease;
+    }
+
+    #securityCoverOverlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.98);
+      z-index: 999999;
+      display: none;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      padding: 24px;
+    }
+
+    #securityCoverOverlay.active {
+      display: flex;
+    }
+
+    .sec-shield-icon {
+      font-size: 54px;
+      margin-bottom: 16px;
+      color: #ef4444;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.08); }
+    }
+
+    :root {
+      --primary-navy: #1e3a8a;
+      --primary-blue: #0284c7;
+      --primary-dark: #0f172a;
+      --accent-green: #16a34a;
+      --accent-green-hover: #15803d;
+      --accent-red: #dc2626;
+      --accent-amber: #d97706;
+      --bg-slate: #f8fafc;
+      --card-border: #e2e8f0;
+      --text-main: #0f172a;
+      --text-muted: #64748b;
+    }
+
+    body {
+      background-color: var(--bg-slate);
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .page-wrapper-blur {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      width: 100%;
+      transition: filter 0.15s ease, opacity 0.15s ease;
+    }
+
+    /* TOP INSTITUTION BAR */
+    .gov-top-bar {
+      background: #0f172a;
+      color: #94a3b8;
+      font-size: 12px;
+      padding: 7px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .gov-top-bar span {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* MAIN PORTAL NAVBAR */
+    .portal-navbar {
+      background: #ffffff;
+      border-bottom: 1px solid var(--card-border);
+      padding: 14px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+    }
+
+    .school-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+    }
+
+    .school-crest-badge {
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(135deg, #1e3a8a, #0369a1);
+      color: white;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Cinzel', serif;
+      font-size: 19px;
+      font-weight: 700;
+      box-shadow: 0 4px 8px rgba(3, 105, 161, 0.25);
+    }
+
+    .school-text {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .school-name-heading {
+      font-family: 'Cinzel', serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: #1e3a8a;
+      letter-spacing: 0.3px;
+      line-height: 1.2;
+    }
+
+    .school-tagline {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* USER PROFILE CORNER */
+    .nav-user-corner {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .academic-year-tag {
+      background: #f1f5f9;
+      border: 1px solid #cbd5e1;
+      padding: 6px 14px;
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #1e293b;
+    }
+
+    .user-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 4px 14px 4px 4px;
+      background: #f8fafc;
+      border: 1px solid var(--card-border);
+      border-radius: 30px;
+    }
+
+    .user-avatar-small {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #0284c7;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 13.5px;
+    }
+
+    .user-pill-text {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+    }
+
+    .user-name-title {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: #0f172a;
+      line-height: 1.1;
+    }
+
+    .user-class-subtitle {
+      font-size: 11.5px;
+      color: var(--text-muted);
+    }
+
+    /* HERO SUBHEADER */
+    .portal-hero-bar {
+      background: linear-gradient(135deg, #1e3a8a 0%, #0369a1 100%);
+      color: white;
+      padding: 24px 32px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .hero-title-group h1 {
+      font-size: 24px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .hero-title-group p {
+      font-size: 13.5px;
+      opacity: 0.92;
+      margin-top: 4px;
+    }
+
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .btn-hero {
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.32);
+      color: white;
+      padding: 9px 18px;
+      border-radius: 8px;
+      font-size: 13.5px;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .btn-hero:hover {
+      background: rgba(255, 255, 255, 0.26);
+    }
+
+    .btn-hero.primary {
+      background: var(--accent-green);
+      border-color: #4ade80;
+    }
+
+    .btn-hero.primary:hover {
+      background: var(--accent-green-hover);
+    }
+
+    /* MAIN CONTAINER */
+    .main-content-layout {
+      width: 100%;
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 24px 28px 48px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    /* 4-METRICS STATS ROW */
+    .metrics-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 18px;
+    }
+
+    .metric-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 18px 20px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.03);
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .metric-card::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+    }
+
+    .metric-card.total::before { background: #0284c7; }
+    .metric-card.paid::before { background: var(--accent-green); }
+    .metric-card.due::before { background: var(--accent-amber); }
+    .metric-card.balance::before { background: var(--accent-red); }
+
+    .metric-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 8px;
+    }
+
+    .metric-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .metric-badge {
+      font-size: 11px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: 12px;
+    }
+
+    .badge-blue { background: #e0f2fe; color: #0369a1; }
+    .badge-green { background: #dcfce7; color: #15803d; }
+    .badge-amber { background: #fef3c7; color: #b45309; }
+    .badge-red { background: #fee2e2; color: #b91c1c; }
+
+    .metric-value {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--text-main);
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+      margin-bottom: 6px;
+    }
+
+    .metric-value .curr {
+      font-size: 20px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .metric-sub {
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    /* TWO COLUMN MAIN SECTION */
+    .dashboard-columns-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 24px;
+      align-items: start;
+    }
+
+    /* CARD CONTAINERS */
+    .portal-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      margin-bottom: 24px;
+      overflow: hidden;
+    }
+
+    .portal-card-header {
+      padding: 16px 22px;
+      border-bottom: 1px solid var(--card-border);
+      background: #ffffff;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .portal-card-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .portal-card-body {
+      padding: 22px;
+    }
+
+    /* DUE ALERT BANNER */
+    .due-alert-banner {
+      background: #fffbeb;
+      border: 1px solid #fde68a;
+      border-left: 5px solid #f59e0b;
+      border-radius: 8px;
+      padding: 16px 20px;
+      margin-bottom: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .due-alert-content {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .due-alert-icon {
+      width: 42px;
+      height: 42px;
+      background: #fef3c7;
+      color: #b45309;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+    }
+
+    .due-alert-text h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #92400e;
+    }
+
+    .due-alert-text p {
+      font-size: 13px;
+      color: #b45309;
+      margin-top: 2px;
+    }
+
+    .btn-pay-now-action {
+      background: var(--accent-green);
+      color: white;
+      border: none;
+      padding: 11px 24px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 14.5px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 4px 10px rgba(22, 163, 74, 0.25);
+      transition: all 0.2s;
+      white-space: nowrap;
+    }
+
+    .btn-pay-now-action:hover {
+      background: var(--accent-green-hover);
+      transform: translateY(-1px);
+    }
+
+    /* DATA TABLES */
+    .portal-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13.5px;
+      text-align: left;
+    }
+
+    .portal-table th {
+      background: #f8fafc;
+      color: #475569;
+      font-weight: 600;
+      padding: 12px 16px;
+      border-bottom: 1px solid var(--card-border);
+      border-top: 1px solid var(--card-border);
+    }
+
+    .portal-table td {
+      padding: 13px 16px;
+      border-bottom: 1px solid var(--card-border);
+      color: #1e293b;
+    }
+
+    .portal-table tr:hover {
+      background: #f8fafc;
+    }
+
+    .portal-table td.text-right, .portal-table th.text-right {
+      text-align: right;
+    }
+
+    .portal-table tr.total-highlight-row {
+      background: #f1f5f9;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .portal-table tr.total-highlight-row td {
+      border-top: 2px solid #cbd5e1;
+    }
+
+    /* STATUS BADGES */
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 10px;
+      border-radius: 20px;
+      font-size: 12px;
+      font-weight: 600;
+    }
+
+    .status-pill.success {
+      background: #dcfce7;
+      color: #15803d;
+    }
+
+    .status-pill.pending {
+      background: #fef3c7;
+      color: #b45309;
+    }
+
+    .btn-table-action {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      padding: 5px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #0284c7;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .btn-table-action:hover {
+      background: #f0f9ff;
+      border-color: #0284c7;
+    }
+
+    /* RIGHT COLUMN: STUDENT PROFILE & SIDEBAR CARDS */
+    .student-profile-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      margin-bottom: 24px;
+    }
+
+    .student-banner-bg {
+      height: 70px;
+      background: linear-gradient(135deg, #1e3a8a, #0284c7);
+      position: relative;
+    }
+
+    .student-avatar-big {
+      width: 76px;
+      height: 76px;
+      border-radius: 50%;
+      background: #e0f2fe;
+      border: 4px solid #ffffff;
+      position: absolute;
+      bottom: -38px;
+      left: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.12);
+    }
+
+    .student-avatar-big svg {
+      width: 48px;
+      height: 48px;
+      fill: #0369a1;
+      margin-top: 8px;
+    }
+
+    .student-details-body {
+      padding: 46px 20px 20px;
+    }
+
+    .student-full-name {
+      font-size: 17px;
+      font-weight: 800;
+      color: #0f172a;
+    }
+
+    .student-class-tag {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-top: 2px;
+      font-weight: 500;
+    }
+
+    .student-info-list {
+      margin-top: 16px;
+      border-top: 1px solid var(--card-border);
+      padding-top: 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      font-size: 13px;
+    }
+
+    .student-info-row {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .student-info-row .label {
+      color: var(--text-muted);
+    }
+
+    .student-info-row .val {
+      font-weight: 600;
+      color: #0f172a;
+    }
+
+    /* QUICK ACTIONS LIST */
+    .quick-actions-card {
+      background: #ffffff;
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+      margin-bottom: 24px;
+    }
+
+    .quick-actions-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .quick-action-link-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid var(--card-border);
+      margin-bottom: 8px;
+      color: #334155;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.15s ease;
+      cursor: pointer;
+    }
+
+    .quick-action-link-item:hover {
+      background: #f0f9ff;
+      border-color: #38bdf8;
+      color: #0284c7;
+    }
+
+    /* HELP & CONTACT CARD */
+    .help-card {
+      background: #f1f5f9;
+      border-radius: 12px;
+      padding: 18px;
+      font-size: 12.5px;
+      color: #475569;
+      line-height: 1.6;
+    }
+
+    .help-card h4 {
+      color: #1e3a8a;
+      font-size: 14px;
+      margin-bottom: 6px;
+      font-weight: 700;
+    }
+
+    /* FOOTER */
+    .portal-footer {
+      background: #ffffff;
+      border-top: 1px solid var(--card-border);
+      padding: 20px 32px;
+      margin-top: auto;
+      text-align: center;
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    /* MODAL OVERLAYS */
+    .modal-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(15, 23, 42, 0.75);
+      backdrop-filter: blur(6px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.2s ease;
+    }
+
+    .modal-overlay.active {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    .modal-box {
+      background: #ffffff;
+      width: 100%;
+      max-width: 680px;
+      max-height: 90vh;
+      border-radius: 14px;
+      overflow-y: auto;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.35);
+      transform: translateY(20px) scale(0.98);
+      transition: transform 0.2s ease;
+    }
+
+    .modal-overlay.active .modal-box {
+      transform: translateY(0) scale(1);
+    }
+
+    .modal-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--card-border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      background: #ffffff;
+      z-index: 2;
+    }
+
+    .modal-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .modal-close-btn {
+      background: #f1f5f9;
+      border: none;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #64748b;
+      font-size: 18px;
+    }
+
+    .modal-close-btn:hover {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    .modal-body {
+      padding: 24px;
+    }
+
+    /* PAYMENT GATEWAY SPECIFIC */
+    .pay-methods-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .pay-method-card {
+      border: 1.5px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13.5px;
+      font-weight: 600;
+      transition: all 0.15s ease;
+    }
+
+    .pay-method-card:hover {
+      border-color: #0284c7;
+      background: #f0f9ff;
+    }
+
+    .pay-method-card.selected {
+      border-color: #0284c7;
+      background: #e0f2fe;
+      color: #0369a1;
+    }
+
+    /* PRINTABLE RECEIPT SHEET */
+    .official-receipt-sheet {
+      border: 2px solid #0f172a;
+      padding: 28px;
+      background: #fff;
+      font-family: 'Inter', sans-serif;
+    }
+
+    .receipt-header-banner {
+      text-align: center;
+      border-bottom: 2px double #334155;
+      padding-bottom: 14px;
+      margin-bottom: 16px;
+    }
+
+    .school-crest-name {
+      font-family: 'Cinzel', serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #1e3a8a;
+    }
+
+    .school-affil-text {
+      font-size: 11.5px;
+      color: #475569;
+      margin-top: 2px;
+    }
+
+    .receipt-type-heading {
+      margin-top: 8px;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #0f172a;
+      background: #f1f5f9;
+      display: inline-block;
+      padding: 3px 14px;
+      border-radius: 4px;
+    }
+
+    .receipt-meta-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px 18px;
+      font-size: 12.5px;
+      background: #f8fafc;
+      padding: 12px 14px;
+      border-radius: 6px;
+      margin-bottom: 16px;
+      border: 1px solid #e2e8f0;
+    }
+
+    .receipt-meta-grid div {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .receipt-meta-grid .label {
+      color: #64748b;
+      font-weight: 500;
+    }
+
+    .receipt-meta-grid .val {
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .receipt-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12.5px;
+      margin-bottom: 16px;
+    }
+
+    .receipt-table th, .receipt-table td {
+      border: 1px solid #cbd5e1;
+      padding: 8px 12px;
+    }
+
+    .receipt-table th {
+      background: #f1f5f9;
+      font-weight: 700;
+      color: #334155;
+      text-align: left;
+    }
+
+    .receipt-table td.text-right {
+      text-align: right;
+    }
+
+    .receipt-table tr.total-row {
+      font-weight: 700;
+      background: #f8fafc;
+      font-size: 14px;
+    }
+
+    .words-note {
+      font-size: 12px;
+      font-style: italic;
+      color: #334155;
+      margin-bottom: 14px;
+      background: #f0fdf4;
+      border-left: 3px solid #16a34a;
+      padding: 8px 12px;
+    }
+
+    .receipt-signatures {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 28px;
+      padding-top: 10px;
+    }
+
+    .sig-block {
+      text-align: center;
+      width: 150px;
+    }
+
+    .sig-seal {
+      width: 70px;
+      height: 70px;
+      border: 2px dashed #0284c7;
+      border-radius: 50%;
+      margin: 0 auto 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #0284c7;
+      font-size: 9.5px;
+      font-weight: 800;
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 1.1;
+      transform: rotate(-10deg);
+    }
+
+    .sig-line {
+      border-top: 1px solid #475569;
+      margin-top: 36px;
+      padding-top: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      color: #334155;
+    }
+
+    /* RESPONSIVE DESIGN */
+    @media (max-width: 1024px) {
+      .dashboard-columns-grid { grid-template-columns: 1fr; }
+      .metrics-stats-grid { grid-template-columns: repeat(2, 1fr); }
+      .portal-navbar { padding: 12px 18px; }
+    }
+
+    @media (max-width: 640px) {
+      .metrics-stats-grid { grid-template-columns: 1fr; }
+      .due-alert-banner { flex-direction: column; align-items: flex-start; }
+      .btn-pay-now-action { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body oncontextmenu="return false;" ondragstart="return false;" onselectstart="return false;">
+
+  <!-- ANTI-SCREENSHOT PRIVACY SHIELD OVERLAY -->
+  <div id="securityCoverOverlay">
+    <div class="sec-shield-icon">🛡️</div>
+    <h2 style="font-size: 24px; font-weight: 800; margin-bottom: 8px;">Official Portal Security</h2>
+    <p style="font-size: 15px; color: #94a3b8; max-width: 460px; line-height: 1.6;">
+      Screen capture, snipping tool, and unauthorized document copying are restricted on this student fee portal.
+    </p>
+    <div style="margin-top: 18px; font-size: 13px; color: #38bdf8;">
+      Return focus to window to continue viewing.
+    </div>
+  </div>
+
+  <div class="page-wrapper-blur" id="pageWrapper">
+
+    <!-- TOP GOVERNMENT & AFFILIATION BAR (Phone with masked xx) -->
+    <div class="gov-top-bar">
+      <div>
+        <span>Council for the Indian School Certificate Examinations (ICSE) &bull; Affiliation: KA-148</span>
+      </div>
+      <div>
+        <span>Academic Year: 2026 - 2027</span>
+        <span style="margin-left: 18px;">Support: +91 81979713xx</span>
+        <span style="margin-left: 14px;">Helpdesk: floscarmeli2004@gmail.com</span>
+      </div>
+    </div>
+
+    <!-- MAIN NAVIGATION BAR -->
+    <nav class="portal-navbar">
+      <div class="school-brand">
+        <div class="school-crest-badge">FCC</div>
+        <div class="school-text">
+          <div class="school-name-heading">FLOS CARMELI CONVENT SCHOOL</div>
+          <div class="school-tagline">Hale Kesare, Mysuru, Karnataka &ndash; 570003</div>
+        </div>
+      </div>
+
+      <div class="nav-user-corner">
+        <div class="academic-year-tag">
+          <span>AY: 2026 - 2027</span>
+        </div>
+
+        <div class="user-pill">
+          <div class="user-avatar-small">KA</div>
+          <div class="user-pill-text">
+            <div class="user-name-title">Keerthana A M</div>
+            <div class="user-class-subtitle">Class VIII - B &bull; Roll 24</div>
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- HERO SECTION WITH TITLE & QUICK ACTION -->
+    <section class="portal-hero-bar">
+      <div class="hero-title-group">
+        <h1>
+          <span>🏛️</span> Student Fee Portal &bull; Academic Ledger
+        </h1>
+        <p>
+          Official Fee Structure, Verified Online Payment History & Outstanding Dues for <strong>KEERTHANA A M (Class VIII - B)</strong>
+        </p>
+      </div>
+
+      <div class="hero-actions">
+        <button class="btn-hero" onclick="openReceiptModal('oct')">
+          <span>🧾 View Latest Receipt (₹15,000)</span>
+        </button>
+        <button class="btn-hero primary" onclick="openPaymentModal()">
+          <span>💳 Pay Balance Now (₹21,400)</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- MAIN BODY LAYOUT -->
+    <main class="main-content-layout">
+
+      <!-- 4 KEY FINANCIAL METRICS CARDS -->
+      <div class="metrics-stats-grid">
+        <!-- Total Annual Fee -->
+        <div class="metric-card total">
+          <div class="metric-head">
+            <span class="metric-label">Total Annual Fee</span>
+            <span class="metric-badge badge-blue">AY 2026 - 2027</span>
+          </div>
+          <div class="metric-value">
+            <span class="curr">₹</span> 43,700
+          </div>
+          <div class="metric-sub">
+            <span>Official Sanctioned Annual Fee Structure</span>
+          </div>
+        </div>
+
+        <!-- Total Paid to Date -->
+        <div class="metric-card paid">
+          <div class="metric-head">
+            <span class="metric-label">Total Fee Paid</span>
+            <span class="metric-badge badge-green">Paid Online (51%)</span>
+          </div>
+          <div class="metric-value" style="color: #15803d;">
+            <span class="curr">₹</span> 22,300
+          </div>
+          <div class="metric-sub">
+            <span>₹ 7,300 (28-Aug) + ₹ 15,000 (09-Oct)</span>
+          </div>
+        </div>
+
+        <!-- Immediate Due Amount -->
+        <div class="metric-card due">
+          <div class="metric-head">
+            <span class="metric-label">Current Due Amount</span>
+            <span class="metric-badge badge-amber">Due 17 Nov 2026</span>
+          </div>
+          <div class="metric-value" style="color: #b45309;">
+            <span class="curr">₹</span> 21,400
+          </div>
+          <div class="metric-sub">
+            <span>Payable within 17th of November 2026</span>
+          </div>
+        </div>
+
+        <!-- Outstanding Balance -->
+        <div class="metric-card balance">
+          <div class="metric-head">
+            <span class="metric-label">Total Balance Due</span>
+            <span class="metric-badge badge-red">Pending Payment</span>
+          </div>
+          <div class="metric-value" style="color: #b91c1c;">
+            <span class="curr">₹</span> 21,400
+          </div>
+          <div class="metric-sub">
+            <span>Full Clearance Balance Amount</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- MAIN TWO COLUMN WORKSPACE -->
+      <div class="dashboard-columns-grid">
+
+        <!-- LEFT COLUMN (70%): DUE ALERT, FEE STRUCTURE TABLE, PAYMENT HISTORY -->
+        <div class="left-main-column">
+
+          <!-- URGENT DUE ALERT BANNER -->
+          <div class="due-alert-banner">
+            <div class="due-alert-content">
+              <div class="due-alert-icon">⚠️</div>
+              <div class="due-alert-text">
+                <h4>Upcoming Balance Payment: ₹ 21,400 Due</h4>
+                <p>The remaining fee balance of <strong>₹ 21,400</strong> is scheduled to be paid within <strong>17th of November 2026</strong>. Online payment gateway is open with instant fee receipt generation.</p>
+              </div>
+            </div>
+            <button class="btn-pay-now-action" onclick="openPaymentModal()">
+              <span>Pay Due ₹ 21,400 &rarr;</span>
+            </button>
+          </div>
+
+          <!-- CARD 1: COMPLETE FEE BREAKDOWN & INSTALLMENTS SCHEDULE -->
+          <div class="portal-card">
+            <div class="portal-card-header">
+              <div class="portal-card-title">
+                <span>📊</span> Annual Fee Structure & Installment Ledger (2026 - 2027)
+              </div>
+              <span class="status-pill pending">Balance: ₹ 21,400 Due</span>
+            </div>
+
+            <div class="portal-card-body" style="padding: 0;">
+              <table class="portal-table">
+                <thead>
+                  <tr>
+                    <th>Fee Category / Heads</th>
+                    <th class="text-right">Sanctioned Annual (₹)</th>
+                    <th class="text-right">Paid on 28-Aug (₹)</th>
+                    <th class="text-right">Paid on 09-Oct (₹)</th>
+                    <th class="text-right">Balance Due (17 Nov)</th>
+                    <th style="width: 100px;">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <strong>Tuition Fee</strong>
+                      <div style="font-size: 11.5px; color: var(--text-muted);">Academic instruction, faculty & classroom care</div>
+                    </td>
+                    <td class="text-right">₹ 24,000.00</td>
+                    <td class="text-right" style="color: #15803d; font-weight: 600;">₹ 4,000.00</td>
+                    <td class="text-right" style="color: #15803d; font-weight: 600;">₹ 10,000.00</td>
+                    <td class="text-right" style="color: #b91c1c; font-weight: 700;">₹ 10,000.00</td>
+                    <td><span class="status-pill pending">Part Paid</span></td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <strong>Term Examination Fee</strong>
+                      <div style="font-size: 11.5px; color: var(--text-muted);">Assessment, answer booklets & evaluative tests</div>
+                    </td>
+                    <td class="text-right">₹ 6,200.00</td>
+                    <td class="text-right" style="color: #15803d; font-weight: 600;">₹ 1,300.00</td>
+                    <td class="text-right" style="color: #15803d; font-weight: 600;">₹ 1,500.00</td>
+                    <td class="text-right" style="color: #b91c1c; font-weight: 700;">₹ 3,400.00</td>
+                    <td><span class="status-pill pending">Part Paid</span></td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <strong>Smart Class & IT Education Lab</strong>
+                      <div style="font-size: 11.5px; color: var(--text-muted);">Digital curriculum, computer practicals & AV suites</div>
+                    </td>
+                    <td class="text-right">₹ 5,500.00</td>
+                    <td class="text-right" style="color: #15803d; font-weight: 600;">₹ 1,000.00</td>
+                    <td class="text-right" style="color: #15803d; font-weight: 600;">₹ 2,500.00</td>
+                    <td class="text-right" style="color: #b91c1c; font-weight: 700;">₹ 2,000.00</td>
+                    <td><span class="status-pill pending">Part Paid</span></td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <strong>Sports, Cultural & Co-Curricular</strong>
+                      <div style="font-size: 11.5px; color: var(--text-muted);">Physical education, arts, competitions & events</div>
+                    </td>
+                    <td class="text-right">₹ 4,500.00</td>
+                    <td class="text-right" style="color: #15803d; font-weight: 600;">₹ 500.00</td>
+                    <td class="text-right" style="color: #15803d; font-weight: 600;">₹ 1,000.00</td>
+                    <td class="text-right" style="color: #b91c1c; font-weight: 700;">₹ 3,000.00</td>
+                    <td><span class="status-pill pending">Part Paid</span></td>
+                  </tr>
+
+                  <tr>
+                    <td>
+                      <strong>School Maintenance & Campus Fund</strong>
+                      <div style="font-size: 11.5px; color: var(--text-muted);">Campus upkeep, safety, generator & sanitation</div>
+                    </td>
+                    <td class="text-right">₹ 3,500.00</td>
+                    <td class="text-right" style="color: #15803d; font-weight: 600;">₹ 500.00</td>
+                    <td class="text-right" style="color: #94a3b8;">&mdash;</td>
+                    <td class="text-right" style="color: #b91c1c; font-weight: 700;">₹ 3,000.00</td>
+                    <td><span class="status-pill pending">Part Paid</span></td>
+                  </tr>
+
+                  <tr class="total-highlight-row">
+                    <td>Total Annual Account Ledger</td>
+                    <td class="text-right" style="color: #0284c7; font-size: 15px;">₹ 43,700.00</td>
+                    <td class="text-right" style="color: #15803d; font-size: 15px;">₹ 7,300.00</td>
+                    <td class="text-right" style="color: #15803d; font-size: 15px;">₹ 15,000.00</td>
+                    <td class="text-right" style="color: #b91c1c; font-size: 16px;">₹ 21,400.00</td>
+                    <td><span class="status-pill pending">Due 17 Nov</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- CARD 2: VERIFIED ONLINE PAYMENT TRANSACTIONS -->
+          <div class="portal-card">
+            <div class="portal-card-header">
+              <div class="portal-card-title">
+                <span>💳</span> Verified Online Payment History & Invoices
+              </div>
+              <span class="status-pill success">2 Successful Payments (₹ 22,300)</span>
+            </div>
+
+            <div class="portal-card-body" style="padding: 0;">
+              <table class="portal-table">
+                <thead>
+                  <tr>
+                    <th>Transaction ID</th>
+                    <th>Payment Date</th>
+                    <th>Payment Channel</th>
+                    <th>Invoice / Receipt No</th>
+                    <th class="text-right">Amount Paid</th>
+                    <th>Status</th>
+                    <th class="text-right">Receipt Action</th>
+                  </tr>
+                </thead>
+                <tbody id="paymentHistoryTbody">
+                  <!-- Payment 2: Oct 9 -->
+                  <tr>
+                    <td><strong>TXN9481029481</strong></td>
+                    <td>09 Oct, 2026</td>
+                    <td>Online (UPI / NetBanking)</td>
+                    <td><span style="font-family: monospace; font-weight: 600;">FCC/26-27/184</span></td>
+                    <td class="text-right" style="color: #15803d; font-weight: 700; font-size: 14.5px;">₹ 15,000.00</td>
+                    <td><span class="status-pill success">✓ Cleared</span></td>
+                    <td class="text-right">
+                      <button class="btn-table-action" onclick="openReceiptModal('oct')">View Receipt</button>
+                    </td>
+                  </tr>
+
+                  <!-- Payment 1: Aug 28 -->
+                  <tr>
+                    <td><strong>TXN8271039482</strong></td>
+                    <td>28 Aug, 2026</td>
+                    <td>Online (UPI / NetBanking)</td>
+                    <td><span style="font-family: monospace; font-weight: 600;">FCC/26-27/112</span></td>
+                    <td class="text-right" style="color: #15803d; font-weight: 700; font-size: 14.5px;">₹ 7,300.00</td>
+                    <td><span class="status-pill success">✓ Cleared</span></td>
+                    <td class="text-right">
+                      <button class="btn-table-action" onclick="openReceiptModal('aug')">View Receipt</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN (30%): STUDENT DETAILS, QUICK ACTIONS & HELPDESK -->
+        <div class="right-sidebar-column">
+
+          <!-- STUDENT PROFILE CARD -->
+          <div class="student-profile-card">
+            <div class="student-banner-bg">
+              <div class="student-avatar-big">
+                <svg viewBox="0 0 24 24"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+              </div>
+            </div>
+            <div class="student-details-body">
+              <div class="student-full-name">KEERTHANA A M</div>
+              <div class="student-class-tag">Class VIII - B &bull; Roll Number: 24</div>
+
+              <div class="student-info-list">
+                <div class="student-info-row">
+                  <span class="label">Admission Number:</span>
+                  <span class="val">FCC/2020/1482</span>
+                </div>
+                <div class="student-info-row">
+                  <span class="label">Institution:</span>
+                  <span class="val">Flos Carmeli Convent, Mysuru</span>
+                </div>
+                <div class="student-info-row">
+                  <span class="label">Board / Affiliation:</span>
+                  <span class="val">ICSE (New Delhi)</span>
+                </div>
+                <div class="student-info-row">
+                  <span class="label">Academic Year:</span>
+                  <span class="val">2026 - 2027</span>
+                </div>
+                <div class="student-info-row">
+                  <span class="label">Payment Mode:</span>
+                  <span class="val" style="color: #0284c7;">Online (Instant)</span>
+                </div>
+                <div class="student-info-row">
+                  <span class="label">Fee Status:</span>
+                  <span class="val" style="color: #b91c1c;">Balance Pending (₹ 21,400)</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- QUICK ACTIONS & DOWNLOADS -->
+          <div class="quick-actions-card">
+            <div class="quick-actions-title">
+              <span>⚡</span> Quick Documents
+            </div>
+
+            <div class="quick-action-link-item" onclick="openReceiptModal('oct')">
+              <span>📄 Latest Receipt (₹ 15,000)</span>
+              <span>&rarr;</span>
+            </div>
+
+            <div class="quick-action-link-item" onclick="openReceiptModal('aug')">
+              <span>📄 Part Payment Receipt (₹ 7,300)</span>
+              <span>&rarr;</span>
+            </div>
+
+            <div class="quick-action-link-item" onclick="openReceiptModal('consol')">
+              <span>📑 Consolidated Annual Statement (₹ 22,300)</span>
+              <span>&rarr;</span>
+            </div>
+
+            <div class="quick-action-link-item" onclick="openPaymentModal()" style="background: #f0fdf4; border-color: #86efac; color: #166534;">
+              <span>💳 Pay Outstanding Balance (₹ 21,400)</span>
+              <span>&rarr;</span>
+            </div>
+          </div>
+
+          <!-- SCHOOL HELPDESK & CONTACT INFO (Phone with masked xx) -->
+          <div class="help-card">
+            <h4>Need Fee Assistance?</h4>
+            <p>
+              Accounts Office, <strong>Flos Carmeli Convent School</strong><br>
+              No. 480, Old Kesare Village, Hale Kesare, Mysuru &ndash; 570003<br>
+              <strong>Phone:</strong> +91 81979713xx / 0821-24953xx<br>
+              <strong>Email:</strong> floscarmeli2004@gmail.com<br>
+              <strong>Timings:</strong> Mon &ndash; Sat (9:00 AM &ndash; 4:00 PM)
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="portal-footer">
+      <div>
+        &copy; 2026 - 2027 <strong>Flos Carmeli Convent School, Mysuru</strong>. All Rights Reserved. Affiliated to ICSE, New Delhi.
+      </div>
+      <div style="margin-top: 4px; font-size: 11.5px; color: #94a3b8;">
+        Student ERP & Fee Management System &bull; Authorized by Flos Carmeli Convent Education Trust
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- MODAL 1: ONLINE PAYMENT GATEWAY -->
+  <div class="modal-overlay" id="payModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <div class="modal-title">
+          <span>💳</span> Online School Fee Payment Gateway
+        </div>
+        <button class="modal-close-btn" onclick="closeModal('payModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+        
+        <div style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 16px; margin-bottom: 20px;">
+          <div style="display: flex; justify-content: space-between; font-size: 13.5px; margin-bottom: 6px;">
+            <span style="color: #64748b;">Institution:</span>
+            <strong style="color: #0f172a;">Flos Carmeli Convent School, Mysuru</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 13.5px; margin-bottom: 6px;">
+            <span style="color: #64748b;">Student:</span>
+            <strong style="color: #0f172a;">KEERTHANA A M &bull; Class VIII - B</strong>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 13.5px; margin-bottom: 6px;">
+            <span style="color: #64748b;">Fee Purpose:</span>
+            <span style="color: #0284c7; font-weight: 600;">Outstanding Balance Clearance (Due by 17-Nov-2026)</span>
+          </div>
+          <div style="display: flex; justify-content: space-between; font-size: 17px; border-top: 1px dashed #cbd5e1; padding-top: 10px; margin-top: 10px;">
+            <span style="font-weight: 700; color: #1e293b;">Total Amount Payable:</span>
+            <strong style="color: #0369a1; font-size: 24px;">₹ 21,400.00</strong>
+          </div>
+        </div>
+
+        <label style="font-size: 13.5px; font-weight: 700; color: #334155;">Select Payment Method:</label>
+        <div class="pay-methods-grid">
+          <div class="pay-method-card selected" onclick="selectPayMethod(this)">
+            <span>⚡ UPI / QR Scan</span>
+          </div>
+          <div class="pay-method-card" onclick="selectPayMethod(this)">
+            <span>📱 Google Pay / PhonePe / Paytm</span>
+          </div>
+          <div class="pay-method-card" onclick="selectPayMethod(this)">
+            <span>💳 Debit / Credit Card</span>
+          </div>
+          <div class="pay-method-card" onclick="selectPayMethod(this)">
+            <span>🏦 Net Banking / NEFT</span>
+          </div>
+        </div>
+
+        <!-- SIMULATED UPI QR CODE -->
+        <div style="text-align: center; margin-top: 18px; padding: 16px; background: #fafafa; border-radius: 10px; border: 1px dashed #cbd5e1;">
+          <div style="font-size: 13px; color: #475569; margin-bottom: 10px; font-weight: 600;">Scan with Any UPI App (Google Pay / PhonePe / BHIM)</div>
+          <svg width="140" height="140" viewBox="0 0 100 100" style="margin: 0 auto; display: block; background: white; padding: 6px; border: 1px solid #ddd; border-radius: 8px;">
+            <rect width="100" height="100" fill="white"/>
+            <rect x="5" y="5" width="28" height="28" fill="#1e293b"/>
+            <rect x="9" y="9" width="20" height="20" fill="white"/>
+            <rect x="13" y="13" width="12" height="12" fill="#1e293b"/>
+            <rect x="67" y="5" width="28" height="28" fill="#1e293b"/>
+            <rect x="71" y="9" width="20" height="20" fill="white"/>
+            <rect x="75" y="13" width="12" height="12" fill="#1e293b"/>
+            <rect x="5" y="67" width="28" height="28" fill="#1e293b"/>
+            <rect x="9" y="71" width="20" height="20" fill="white"/>
+            <rect x="13" y="75" width="12" height="12" fill="#1e293b"/>
+            <rect x="40" y="8" width="6" height="6" fill="#1e293b"/>
+            <rect x="52" y="8" width="8" height="6" fill="#1e293b"/>
+            <rect x="40" y="20" width="8" height="6" fill="#1e293b"/>
+            <rect x="54" y="22" width="6" height="6" fill="#1e293b"/>
+            <rect x="10" y="42" width="12" height="6" fill="#1e293b"/>
+            <rect x="28" y="42" width="6" height="6" fill="#1e293b"/>
+            <rect x="40" y="38" width="18" height="6" fill="#1e293b"/>
+            <rect x="65" y="42" width="12" height="6" fill="#1e293b"/>
+            <rect x="82" y="42" width="8" height="6" fill="#1e293b"/>
+            <rect x="42" y="52" width="10" height="6" fill="#1e293b"/>
+            <rect x="60" y="52" width="14" height="6" fill="#1e293b"/>
+            <rect x="78" y="52" width="10" height="6" fill="#1e293b"/>
+            <rect x="40" y="68" width="8" height="8" fill="#1e293b"/>
+            <rect x="54" y="68" width="6" height="16" fill="#1e293b"/>
+            <rect x="68" y="68" width="10" height="6" fill="#1e293b"/>
+            <rect x="84" y="76" width="8" height="8" fill="#1e293b"/>
+            <rect x="40" y="84" width="8" height="6" fill="#1e293b"/>
+            <rect x="68" y="82" width="12" height="8" fill="#1e293b"/>
+          </svg>
+          <div style="font-size: 11.5px; color: #64748b; margin-top: 8px;">VPA: <strong>floscarmelifee@sbi</strong> &bull; Merchant: Flos Carmeli Convent Trust</div>
+        </div>
+
+        <button class="btn-pay-now-action" style="width: 100%; margin-top: 22px; padding: 14px; font-size: 16px; justify-content: center;" onclick="executeOnlinePayment()">
+          Confirm & Pay ₹ 21,400.00 Online &rarr;
+        </button>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: OFFICIAL PRINTABLE RECEIPT (Phone with masked xx) -->
+  <div class="modal-overlay" id="receiptModal">
+    <div class="modal-box" style="max-width: 720px;">
+      <div class="modal-header">
+        <div class="modal-title">
+          <span>🧾</span> Official Student Fee Receipt
+        </div>
+        <button class="modal-close-btn" onclick="closeModal('receiptModal')">&times;</button>
+      </div>
+      <div class="modal-body">
+
+        <!-- TAB SWITCHER INSIDE RECEIPT MODAL -->
+        <div style="display: flex; gap: 8px; margin-bottom: 18px;">
+          <button class="btn-table-action" id="rTabOct" onclick="setReceipt('oct')">Receipt #184 (₹ 15,000 &bull; 09-Oct)</button>
+          <button class="btn-table-action" id="rTabAug" onclick="setReceipt('aug')">Receipt #112 (₹ 7,300 &bull; 28-Aug)</button>
+          <button class="btn-table-action" id="rTabConsol" onclick="setReceipt('consol')">Consolidated Statement (₹ 22,300)</button>
+        </div>
+
+        <!-- PRINTABLE SHEET -->
+        <div class="official-receipt-sheet" id="receiptPrintArea">
+          <div class="receipt-header-banner">
+            <div class="school-crest-name">FLOS CARMELI CONVENT SCHOOL</div>
+            <div class="school-affil-text">(Affiliated to Council for the Indian School Certificate Examinations - ICSE, New Delhi)</div>
+            <div class="school-affil-text">No. 480, Old Kesare Village, Hale Kesare, Mysuru, Karnataka &ndash; 570003</div>
+            <div class="school-affil-text">Phone: +91 81979713xx / 0821-24953xx | Email: floscarmeli2004@gmail.com</div>
+            <div class="receipt-type-heading" id="receiptHeading">STUDENT FEE RECEIPT &bull; 2026 - 2027</div>
+          </div>
+
+          <div class="receipt-meta-grid">
+            <div>
+              <span class="label">Receipt / Invoice No:</span>
+              <span class="val" id="rInvoice">FCC/2026-27/184</span>
+            </div>
+            <div>
+              <span class="label">Date of Payment:</span>
+              <span class="val" id="rDate">09-Oct-2026</span>
+            </div>
+            <div>
+              <span class="label">Student Name:</span>
+              <span class="val">KEERTHANA A M</span>
+            </div>
+            <div>
+              <span class="label">Class & Section:</span>
+              <span class="val">VIII - B</span>
+            </div>
+            <div>
+              <span class="label">Admission No:</span>
+              <span class="val">FCC/2020/1482</span>
+            </div>
+            <div>
+              <span class="label">Roll No:</span>
+              <span class="val">24</span>
+            </div>
+            <div>
+              <span class="label">Payment Mode:</span>
+              <span class="val" style="color: #0284c7;">Online (UPI / Net Banking)</span>
+            </div>
+            <div>
+              <span class="label">Bank Txn Ref:</span>
+              <span class="val" id="rRef">TXN9481029481</span>
+            </div>
+          </div>
+
+          <table class="receipt-table">
+            <thead>
+              <tr>
+                <th style="width: 50px;">Sl No.</th>
+                <th>Fee Particulars / Category</th>
+                <th class="text-right" style="width: 140px;">Amount Paid (₹)</th>
+              </tr>
+            </thead>
+            <tbody id="rTableBody">
+              <tr>
+                <td>1</td>
+                <td>Tuition Fee (Installment II)</td>
+                <td class="text-right">10,000.00</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Smart Class & Digital IT Lab</td>
+                <td class="text-right">2,500.00</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Term Examination Fee</td>
+                <td class="text-right">1,500.00</td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Sports & Cultural Activities</td>
+                <td class="text-right">1,000.00</td>
+              </tr>
+              <tr class="total-row">
+                <td colspan="2" class="text-right">Total Amount Received:</td>
+                <td class="text-right" style="color: #15803d; font-size: 15px;">₹ <span id="rTotalPaid">15,000.00</span></td>
+              </tr>
+            </tbody>
+          </table>
+
+          <div class="words-note" id="rWords">
+            <strong>Amount in Words:</strong> Rupees Fifteen Thousand Only.
+          </div>
+
+          <div style="font-size: 12px; color: #475569; margin-top: 10px; line-height: 1.5; background: #f8fafc; padding: 10px 14px; border-radius: 6px; border: 1px solid #e2e8f0;">
+            <div>&bull; Total Annual Fee (2026 - 2027): <strong>₹ 43,700.00</strong></div>
+            <div>&bull; Total Amount Paid to Date: <strong>₹ 22,300.00</strong> (₹ 7,300 on 28-Aug-2026 + ₹ 15,000 on 09-Oct-2026)</div>
+            <div>&bull; Remaining Balance Payable: <strong>₹ 21,400.00</strong> (to be paid within <strong>17th of November 2026</strong>)</div>
+          </div>
+
+          <div class="receipt-signatures">
+            <div class="sig-block">
+              <div class="sig-seal">
+                FLOS CARMELI<br>CONVENT<br>MYSORE
+              </div>
+              <div style="font-size: 10.5px; color: #64748b;">Institution Seal</div>
+            </div>
+
+            <div class="sig-block">
+              <div class="sig-line">Cashier / Accounts Officer</div>
+            </div>
+
+            <div class="sig-block">
+              <div class="sig-line">Principal / Headmistress</div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // SCREENSHOT & SNIPPING TOOL BLOCKER SCRIPT
+    function triggerScreenProtection() {
+      document.body.classList.add('capture-protected');
+      document.getElementById('securityCoverOverlay').classList.add('active');
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        try {
+          navigator.clipboard.writeText('Screenshots and screen capture are restricted on this portal.');
+        } catch (e) {}
+      }
+    }
+
+    function removeScreenProtection() {
+      document.body.classList.remove('capture-protected');
+      document.getElementById('securityCoverOverlay').classList.remove('active');
+    }
+
+    // Detect window blur / snipping tool activation
+    window.addEventListener('blur', triggerScreenProtection);
+    window.addEventListener('focus', removeScreenProtection);
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        triggerScreenProtection();
+      } else {
+        removeScreenProtection();
+      }
+    });
+
+    // Detect PrintScreen and Screen capture keyboard combinations
+    window.addEventListener('keyup', (e) => {
+      if (e.key === 'PrintScreen' || e.keyCode === 44) {
+        triggerScreenProtection();
+        setTimeout(removeScreenProtection, 2500);
+      }
+    });
+
+    window.addEventListener('keydown', (e) => {
+      // PrintScreen
+      if (e.key === 'PrintScreen' || e.keyCode === 44) {
+        e.preventDefault();
+        triggerScreenProtection();
+        setTimeout(removeScreenProtection, 2500);
+        return false;
+      }
+      // Ctrl+P (Print)
+      if ((e.ctrlKey || e.metaKey) && (e.key === 'p' || e.key === 'P')) {
+        e.preventDefault();
+        triggerScreenProtection();
+        setTimeout(removeScreenProtection, 2000);
+        return false;
+      }
+      // Ctrl+Shift+S / Win+Shift+S / Ctrl+S
+      if ((e.ctrlKey || e.metaKey) && (e.key === 's' || e.key === 'S')) {
+        e.preventDefault();
+        return false;
+      }
+      // Ctrl+Shift+I / Ctrl+Shift+C / F12 / Ctrl+U (Inspect/Source)
+      if (e.key === 'F12' || ((e.ctrlKey || e.metaKey) && (e.key === 'u' || e.key === 'U' || (e.shiftKey && (e.key === 'I' || e.key === 'C' || e.key === 'J'))))) {
+        e.preventDefault();
+        return false;
+      }
+    });
+
+    // Modal helpers
+    function openModal(id) {
+      document.getElementById(id).classList.add('active');
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.remove('active');
+    }
+
+    function openPaymentModal() {
+      openModal('payModal');
+    }
+
+    function openReceiptModal(tab) {
+      setReceipt(tab || 'oct');
+      openModal('receiptModal');
+    }
+
+    function selectPayMethod(el) {
+      document.querySelectorAll('.pay-method-card').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+    }
+
+    function setReceipt(type) {
+      const tbody = document.getElementById('rTableBody');
+
+      if (type === 'oct') {
+        document.getElementById('rInvoice').innerText = 'FCC/2026-27/184';
+        document.getElementById('rDate').innerText = '09-Oct-2026';
+        document.getElementById('rRef').innerText = 'TXN9481029481';
+        document.getElementById('rTotalPaid').innerText = '15,000.00';
+        document.getElementById('rWords').innerHTML = '<strong>Amount in Words:</strong> Rupees Fifteen Thousand Only.';
+        tbody.innerHTML = `
+          <tr><td>1</td><td>Tuition Fee (Installment II)</td><td class="text-right">10,000.00</td></tr>
+          <tr><td>2</td><td>Smart Class & Digital IT Lab</td><td class="text-right">2,500.00</td></tr>
+          <tr><td>3</td><td>Term Examination Fee</td><td class="text-right">1,500.00</td></tr>
+          <tr><td>4</td><td>Sports & Cultural Activities</td><td class="text-right">1,000.00</td></tr>
+          <tr class="total-row"><td colspan="2" class="text-right">Total Amount Received:</td><td class="text-right" style="color: #15803d; font-size: 15px;">₹ 15,000.00</td></tr>
+        `;
+      } else if (type === 'aug') {
+        document.getElementById('rInvoice').innerText = 'FCC/2026-27/112';
+        document.getElementById('rDate').innerText = '28-Aug-2026';
+        document.getElementById('rRef').innerText = 'TXN8271039482';
+        document.getElementById('rTotalPaid').innerText = '7,300.00';
+        document.getElementById('rWords').innerHTML = '<strong>Amount in Words:</strong> Rupees Seven Thousand Three Hundred Only.';
+        tbody.innerHTML = `
+          <tr><td>1</td><td>Tuition Fee (Part Payment)</td><td class="text-right">4,000.00</td></tr>
+          <tr><td>2</td><td>Term Examination Fee</td><td class="text-right">1,300.00</td></tr>
+          <tr><td>3</td><td>Digital Computer Lab Fee</td><td class="text-right">1,000.00</td></tr>
+          <tr><td>4</td><td>School Maintenance Fund</td><td class="text-right">1,000.00</td></tr>
+          <tr class="total-row"><td colspan="2" class="text-right">Total Amount Received:</td><td class="text-right" style="color: #15803d; font-size: 15px;">₹ 7,300.00</td></tr>
+        `;
+      } else {
+        document.getElementById('rInvoice').innerText = 'FCC/2026-27/CONSOL';
+        document.getElementById('rDate').innerText = '09-Oct-2026';
+        document.getElementById('rRef').innerText = 'CONSOLIDATED-ONLINE';
+        document.getElementById('rTotalPaid').innerText = '22,300.00';
+        document.getElementById('rWords').innerHTML = '<strong>Amount in Words:</strong> Rupees Twenty-Two Thousand Three Hundred Only.';
+        tbody.innerHTML = `
+          <tr><td>1</td><td>Installment 1 (Paid on 28-Aug-2026 &bull; Inv #112)</td><td class="text-right">7,300.00</td></tr>
+          <tr><td>2</td><td>Installment 2 (Paid on 09-Oct-2026 &bull; Inv #184)</td><td class="text-right">15,000.00</td></tr>
+          <tr class="total-row"><td colspan="2" class="text-right">Total Amount Received:</td><td class="text-right" style="color: #15803d; font-size: 15px;">₹ 22,300.00</td></tr>
+        `;
+      }
+    }
+
+    function executeOnlinePayment() {
+      const btn = event.currentTarget;
+      btn.disabled = true;
+      btn.innerHTML = '⏳ Processing Online Payment with Bank Gateway...';
+
+      setTimeout(() => {
+        btn.innerHTML = '✓ Payment Successful!';
+        btn.style.background = '#16a34a';
+
+        setTimeout(() => {
+          closeModal('payModal');
+
+          const tbody = document.getElementById('paymentHistoryTbody');
+          const today = new Date();
+          const dateStr = today.toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
+          const newTr = document.createElement('tr');
+          newTr.innerHTML = `
+            <td><strong>TXN${Date.now().toString().slice(-8)}</strong></td>
+            <td>${dateStr}</td>
+            <td>Online (UPI / Instant)</td>
+            <td><span style="font-family: monospace; font-weight: 600;">FCC/26-27/245</span></td>
+            <td class="text-right" style="color: #15803d; font-weight: 700; font-size: 14.5px;">₹ 21,400.00</td>
+            <td><span class="status-pill success">✓ Cleared</span></td>
+            <td class="text-right">
+              <button class="btn-table-action" onclick="openReceiptModal('consol')">View Receipt</button>
+            </td>
+          `;
+          tbody.insertBefore(newTr, tbody.firstChild);
+
+          alert('🎉 Payment of ₹ 21,400 Received Successfully!\nStudent: Keerthana A M (Class VIII - B)\nSchool: Flos Carmeli Convent, Mysuru\nOutstanding Balance: Fully Cleared (₹ 0.00)\nReceipt Generated.');
+          location.reload();
+        }, 800);
+      }, 1200);
+    }
+
+    // Modal background click close
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+      overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+          overlay.classList.remove('active');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
